@@ -54,7 +54,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
             >
-              홍길동
+              김세원
             </motion.h1>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +62,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-2xl md:text-3xl font-medium text-muted-foreground mb-8"
             >
-              Frontend Developer
+              Fontend Engineer
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Button size="lg" className="rounded-full px-8">
+              <Button size="lg" variant="outline" onClick={scrollToAbout} className="rounded-full px-8">
                 View My Work
               </Button>
             </motion.div>
@@ -122,7 +122,7 @@ export default function Home() {
             <div className="text-center">
               <h2 className="text-3xl font-bold mb-4">About Me</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                I'm a passionate frontend developer with 5+ years of experience building modern web applications.
+                I'm a passionate Fontend Engineer with 5+ years of experience building modern web applications.
               </p>
             </div>
 
@@ -235,7 +235,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="py-12 px-4 md:px-6 border-t">
           <div className="max-w-6xl mx-auto text-center">
-            <p className="text-muted-foreground">© {new Date().getFullYear()} 홍길동. All rights reserved.</p>
+            <p className="text-muted-foreground">© {new Date().getFullYear()} 김세원. All rights reserved.</p>
           </div>
         </footer>
       </main>

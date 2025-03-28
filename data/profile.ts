@@ -9,5 +9,5 @@ export const profile: Profile = {
   name: "김세원",
   role: "Frontend Engineer",
   description: "Creating elegant, intuitive, and high-performance web experiences with modern technologies.",
-  about: "I'm a passionate frontend developer with 5+ years of experience building modern web applications.",
+  about: "I'm a passionate Fontend Engineer with 5+ years of experience building modern web applications.",
 } 

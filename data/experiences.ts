@@ -27,7 +27,7 @@ export const experiences: ExperienceYear[] = [
       {
         company: "토스페이먼츠",
         logo: "/placeholder.svg?height=80&width=80", // 토스페이먼츠 로고로 교체 필요
-        role: "Frontend Developer",
+        role: "Fontend Engineer",
         period: "2021.07 - 2023.06",
         description: "토스페이먼츠의 결제 서비스 프론트엔드 개발을 담당했습니다. 결제 SDK와 관리자 도구 개발에 참여했습니다.",
         projects: [
@@ -54,7 +54,7 @@ export const experiences: ExperienceYear[] = [
       {
         company: "뱅크샐러드",
         logo: "/placeholder.svg?height=80&width=80", // 뱅크샐러드 로고로 교체 필요
-        role: "Frontend Developer",
+        role: "Fontend Engineer",
         period: "2019.03 - 2021.06",
         description: "뱅크샐러드의 웹 서비스 개발을 담당했습니다. 금융 데이터 시각화와 사용자 경험 개선에 주력했습니다.",
         projects: [
