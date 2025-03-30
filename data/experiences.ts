@@ -3,6 +3,9 @@ export interface Project {
   name: string
   image: string
   description: string
+  details?: string
+  technologies?: string[]
+  link?: string
 }
 
 export interface ExperienceItem {
@@ -15,44 +18,67 @@ export interface ExperienceItem {
   skills: string[]
 }
 
-export interface ExperienceYear {
+export interface YearGroup {
   year: string
   items: ExperienceItem[]
 }
 
-export const experiences: ExperienceYear[] = [
+export const experiences: YearGroup[] = [
   {
-    year: "2024-present",
+    year: "2025 - Present",
     items: [
       {
         company: "주식회사 위티",
         logo: "/KnowhowLogotype.png",
-        role: "Frontend Engineer | Technical PM",
-        period: "2024.02 - 현재",
-        description: "GovTech 지원사업 및 신규 모바일 앱 개발을 주도하며, 사용자 경험 개선과 서비스 확장을 위한 기술적 리딩을 수행했습니다.",
+        role: "FE Engineer | Technical PM",
+        period: "2025 - Present",
+        description:
+          "스타트업 커뮤니티 노하우의 글로벌 확장을 위한 기술적 리드 및 신규 기능 개발을 주도.",
         projects: [
           {
-            id: "wit-2024-1",
-            name: "CEO Staff (GovTech 지원사업 과제)",
+            id: "seo-optimization",
+            name: "SEO 최적화 프로젝트",
             image: "/placeholder.svg?height=400&width=600",
-            description: `
-1.9억 원 규모 GovTech 지원사업 수행.
-Full_Calendar 라이브러리를 활용한 지원사업 캘린더 기능 개발.
-유저 맞춤형 관심 키워드 기반 온라인 뉴스 추천 기능 구현.`,
+            description: "구글 검색 노출 수 약 300% 향상.",
+            details: "Google Analytics와 Search Console을 활용한 트래픽 분석 및 SEO 전략 수립. 키워드 분석 및 콘텐츠 최적화를 통해 노출 수 증가 및 클릭률 상승을 유도.",
+            technologies: ["SEO", "Google Analytics", "Search Console", "Performance Monitoring"],
+          }
+   
+        ],
+        skills: ["Nuxt3", "Vue3", "TypeScript", "SEO Optimization", "Performance Tuning"],
+      },
+    ],
+  },
+  {
+    year: "2024",
+    items: [
+      {
+        company: "주식회사 위티",
+        logo: "/KnowhowLogotype.png",
+        role: "FE Engineer | Technical PM",
+        period: "2024",
+        description:
+          "Knowhow 모바일 앱 개발 및 CEO Staff 프로젝트 수행.",
+        projects: [
+          {
+            id: "knowhow-app",
+            name: "노하우 모바일 앱",
+            image: "/placeholder.svg?height=400&width=600",
+            description: "Next.js 기반의 모바일 앱 개발 및 최적화 진행.",
+            details: "Recoil을 활용한 상태 관리 및 웹뷰 환경 최적화를 진행하여 안정적인 성능을 보장. 사용자 피드백을 반영하여 지속적인 기능 개선 및 버그 수정 수행.",
+            technologies: ["Next.js", "React", "TypeScript", "Recoil", "Tailwind CSS"],
+            link: "https://apps.apple.com/kr/app/id6553981316",
           },
           {
-            id: "wit-2024-2",
-            name: "노하우 : 스타트업의 모든 정보 (모바일앱)",
+            id: "ceo-staff",
+            name: "CEO Staff",
             image: "/placeholder.svg?height=400&width=600",
-            description: `
-Next.js, React 기반 모바일 앱 개발.
-Recoil을 활용한 상태 관리 구조로 복잡한 데이터 흐름 간소화.
-IntersectionObserver를 활용한 피드 무한스크롤 구현.
-framer-motion의 dragElastic을 활용해 Bottom Sheet UI 개발.
-웹뷰 환경 최적화 및 API 호출 구조 설계로 앱 성능 안정화.`,
+            description: "GovTech 지원사업 수행 과제 산출물 개발.",
+            details: "유저 맞춤 관심 키워드 기반 뉴스 추천 페이지 및 지원사업 캘린더 기능 개발. Full_Calendar 라이브러리 활용하여 이벤트 관리 기능을 구현.",
+            technologies: ["Vue.js", "TypeScript", "Pinia", "Tailwind CSS"],
           },
         ],
-        skills: ["Next.js", "React", "TypeScript", "Recoil", "Tailwind CSS", "framer-motion", "Full_Calendar"],
+        skills: ["Vue.js", "Next.js", "TypeScript", "Performance Optimization", "State Management"],
       },
     ],
   },
@@ -62,34 +88,31 @@ framer-motion의 dragElastic을 활용해 Bottom Sheet UI 개발.
       {
         company: "주식회사 위티",
         logo: "/KnowhowLogotype.png",
-        role: "Frontend Engineer | Technical PM",
-        period: "2023.04 - 2023.12",
-        description: "B2B SaaS 및 커뮤니티 플랫폼 '노하우' 개발을 담당하며, SEO 최적화와 성능 개선을 주도했습니다.",
+        role: "FE Engineer | Technical PM",
+        period: "2023",
+        description:
+          "Knowhow Space B2B 프로젝트 및 SEO 최적화 프로젝트 수행.",
         projects: [
           {
-            id: "wit-2023-1",
-            name: "스타트업 커뮤니티 노하우",
+            id: "knowhow-space",
+            name: "Knowhow Space",
             image: "/placeholder.svg?height=400&width=600",
-            description: `
-MVVM 패턴을 기반으로 Nuxt3, Vue3 환경에서 SPA 구조를 설계 및 개발.
-SEO 최적화와 LCP 성능 개선을 통해 구글 평균 노출 수를 300% 향상.
-Page Weight를 4.3MB → 2.2MB로 50% 감소시키며 성능 개선 주도.
-일본 시장 진출을 위해 Line API 소셜 로그인, Google Translation API 기반 다국어 기능 개발.
-광고 배너 관리 기능을 도입하여 업무 프로세스를 75% 이상 단축하고, 자체 광고 수익 확보.
-KG 이니시스 정기 결제 기능을 포함한 유료 서비스 구축.`,
+            description: "B2B 기업 맞춤형 SaaS 페이지 개발.",
+            details: "다양한 기업 보육 기관에 맞춤형으로 제공할 수 있는 플랫폼을 개발하여 4000만원의 매출 달성. Chart.js를 활용한 성과 데이터 시각화 및 반응형 디자인 적용.",
+            technologies: ["Vue.js", "TypeScript", "Pinia", "Windi CSS"],
+            link: "https://dashboard.knowhow.ceo/signin",
           },
           {
-            id: "wit-2023-2",
-            name: "Knowhow Space (기관 납품용 B2B 서비스)",
+            id: "knowhow-global",
+            name: "글로벌 확장 프로젝트",
             image: "/placeholder.svg?height=400&width=600",
-            description: `
-Vue.js와 TypeScript 기반으로 다양한 기관에 맞춤형 제공 가능한 B2B SaaS 서비스 개발.
-기관용 데이터 통계 대시보드, 성과 관리 페이지, 사용자 관리 기능을 포함한 주요 모듈 개발.
-B2B 납품을 통해 약 4000만원 매출 달성.
-Chart.js를 활용한 기업 성과 데이터 시각화 기능 구현.`,
+            description: "다국어 지원 및 글로벌 사용자 경험 개선을 위한 프로젝트 수행.",
+            details: "기존 서비스의 글로벌 진출을 위해 다국어 지원 및 UI/UX 개선을 진행. SEO 최적화를 통해 해외 유입을 증대하고, 현지화된 콘텐츠 제공 전략을 수립.",
+            technologies: ["Nuxt3", "Vue3", "TypeScript", "Pinia", "WindiCSS"],
+            link: "https://knowhow.ceo/",
           },
         ],
-        skills: ["Nuxt3", "Vue3", "TypeScript", "Pinia", "WindiCSS", "Cypress", "Chart.js"],
+        skills: ["Vue.js", "TypeScript", "SEO", "Performance Optimization", "Data Visualization"],
       },
     ],
   },
