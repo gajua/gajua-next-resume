@@ -9,9 +9,10 @@ interface ExperienceCardProps {
   isExpanded: boolean
   onToggle: () => void
   onProjectClick: (project: Project) => void
+  selectedProjectId?: string | null
 }
 
-export function ExperienceCard({ experience, isExpanded, onToggle, onProjectClick }: ExperienceCardProps) {
+export function ExperienceCard({ experience, isExpanded, onToggle, onProjectClick, selectedProjectId }: ExperienceCardProps) {
   return (
     <motion.div
       className={`backdrop-blur-md bg-background/50 border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 mb-8 ${
@@ -71,7 +72,12 @@ export function ExperienceCard({ experience, isExpanded, onToggle, onProjectClic
           <h4 className="text-sm font-semibold uppercase mb-4">Projects</h4>
           <div className="grid gap-4">
             {experience.projects.map((project, idx) => (
-              <ProjectCard key={idx} project={project} onClick={() => onProjectClick(project)} />
+              <ProjectCard 
+                key={idx} 
+                project={project} 
+                onClick={() => onProjectClick(project)}
+                isActive={selectedProjectId === project.id}
+              />
             ))}
           </div>
         </div>

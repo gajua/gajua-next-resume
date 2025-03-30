@@ -32,6 +32,7 @@ export default function ExperienceTimeline() {
   }
 
   const handleProjectClick = (project: Project) => {
+    console.log("project", project.id)
     if (selectedProject?.id === project.id) {
       setSelectedProject(null)
     } else {
@@ -79,6 +80,7 @@ export default function ExperienceTimeline() {
                         isExpanded={expandedExperiencePeriod === exp.period}
                         onToggle={() => toggleExperience(exp.period)}
                         onProjectClick={handleProjectClick}
+                        selectedProjectId={selectedProject?.id}
                       />
                     </motion.div>
                   ))
