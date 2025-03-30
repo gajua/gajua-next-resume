@@ -6,18 +6,19 @@ import { experiences } from "@/data/experiences"
 import { YearNavigation } from "./experience/year-navigation"
 import { ExperienceCard } from "./experience/experience-card"
 import { ProjectDetails } from "./experience/project-details"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function ExperienceTimeline() {
-  const [expandedExperience, setExpandedExperience] = useState<number | null>(null)
+  const [expandedExperiencePeriod, setExpandedExperiencePeriod] = useState<string | null>(null)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [visibleYears, setVisibleYears] = useState<string[]>(["2025 - Present"])
 
-  const toggleExperience = (index: number) => {
-    if (expandedExperience === index) {
-      setExpandedExperience(null)
+  const toggleExperience = (period: string) => {
+    if (expandedExperiencePeriod === period) {
+      setExpandedExperiencePeriod(null)
       setSelectedProject(null)
     } else {
-      setExpandedExperience(index)
+      setExpandedExperiencePeriod(period)
       setSelectedProject(null)
     }
   }
@@ -50,18 +51,24 @@ export default function ExperienceTimeline() {
         <div className="grid grid-cols-[1fr_auto_1fr] gap-6">
           {/* Left column - Experience cards */}
           <div>
-            {experiences
-              .filter(yearGroup => visibleYears.includes(yearGroup.year))
-              .map((yearGroup, yearIndex) => (
-                yearGroup.items.map((exp, expIndex) => {
-                  const globalIndex = yearIndex * 10 + expIndex;
-                  return (
-                    <div key={`${yearGroup.year}-${expIndex}`} className="relative flex items-start gap-4">
+            <AnimatePresence>
+              {experiences
+                .filter(yearGroup => visibleYears.includes(yearGroup.year))
+                .map((yearGroup) => (
+                  yearGroup.items.map((exp) => (
+                    <motion.div
+                      key={exp.period}
+                      className="relative flex items-start gap-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {/* Dot */}
                       <div className="absolute right-[-2rem] top-[2.5rem] z-10">
                         <div
                           className={`w-4 h-4 rounded-full bg-primary z-10 ${
-                            expandedExperience === globalIndex ? "ring-4 ring-primary/20" : ""
+                            expandedExperiencePeriod === exp.period ? "ring-4 ring-primary/20" : ""
                           }`}
                         />
                       </div>
@@ -69,17 +76,17 @@ export default function ExperienceTimeline() {
                       {/* Card */}
                       <ExperienceCard
                         experience={exp}
-                        isExpanded={expandedExperience === globalIndex}
-                        onToggle={() => toggleExperience(globalIndex)}
+                        isExpanded={expandedExperiencePeriod === exp.period}
+                        onToggle={() => toggleExperience(exp.period)}
                         onProjectClick={handleProjectClick}
                       />
-                    </div>
-                  )
-                })
-              ))}
+                    </motion.div>
+                  ))
+                ))}
+            </AnimatePresence>
           </div>
           {/* Center column - Timeline */}
-          <div className="relative flex flex-col items-center">
+          <div className="relative flex flex-col items-center -z-10">
             <div className="absolute top-0 bottom-0 w-px bg-border/50" />
           </div>
           {/* Right column - Project details */}
