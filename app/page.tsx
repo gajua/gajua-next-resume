@@ -202,7 +202,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex gap-8 items-center justify-center">
               {projects.map((project, index) => (
                 <ProjectCard
                   key={index}
@@ -211,6 +211,7 @@ export default function Home() {
                   tags={project.tags}
                   image={project.image}
                   index={index}
+                  link={project.link}
                 />
               ))}
             </div>

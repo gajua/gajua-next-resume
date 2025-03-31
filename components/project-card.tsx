@@ -10,16 +10,17 @@ interface ProjectCardProps {
   tags: string[]
   image: string
   index: number
+  link: string
 }
 
-export default function ProjectCard({ title, description, tags, image, index }: ProjectCardProps) {
+export default function ProjectCard({ title, description, tags, image, index, link }: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="group relative overflow-hidden rounded-3xl backdrop-blur-md bg-background/50 border border-border/50 p-1"
+      className="group relative overflow-hidden rounded-3xl backdrop-blur-md bg-background/50 border border-border/50 p-1 max-w-96"
     >
       <div className="rounded-[22px] overflow-hidden">
         <div className="overflow-hidden">
@@ -41,7 +42,7 @@ export default function ProjectCard({ title, description, tags, image, index }: 
               </span>
             ))}
           </div>
-          <Button variant="ghost" className="group/btn">
+          <Button onClick={() => window.open(link, "_blank")} variant="ghost" className="group/btn">
             View Project
             <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
           </Button>
