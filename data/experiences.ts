@@ -29,7 +29,7 @@ export const experiences: YearGroup[] = [
     items: [
       {
         company: "주식회사 위티",
-        logo: "/KnowhowLogotype.png",
+        logo: "/images/knowhowLogotype.png",
         role: "FE Engineer | Technical PM",
         period: "2025 - Present",
         description:
@@ -54,7 +54,7 @@ export const experiences: YearGroup[] = [
     items: [
       {
         company: "주식회사 위티",
-        logo: "/KnowhowLogotype.png",
+        logo: "/images/knowhowLogotype.png",
         role: "FE Engineer | Technical PM",
         period: "2024",
         description:
@@ -87,7 +87,7 @@ export const experiences: YearGroup[] = [
     items: [
       {
         company: "주식회사 위티",
-        logo: "/KnowhowLogotype.png",
+        logo: "/images/knowhowLogotype.png",
         role: "FE Engineer | Technical PM",
         period: "2023",
         description:
