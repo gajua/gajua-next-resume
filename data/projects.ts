@@ -12,7 +12,7 @@ export const projects: Project[] = [
     description:
       "Slack과 Notion API를 연동하여 팀원이 자연어로 질문하면 관련 문서를 즉시 검색해주는 자동화 봇.",
     tags: ["Node.js", "TypeScript", "Slack API", "Notion API", "Ngrok"],
-    image: "https://private-user-images.githubusercontent.com/101968934/428609184-c0c8635a-3191-4597-9af9-7bc526f54aea.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDM0MjU3MzAsIm5iZiI6MTc0MzQyNTQzMCwicGF0aCI6Ii8xMDE5Njg5MzQvNDI4NjA5MTg0LWMwYzg2MzVhLTMxOTEtNDU5Ny05YWY5LTdiYzUyNmY1NGFlYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzMxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMzMVQxMjUwMzBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iODBhMGQzOTkzNTI2MDdlYmM2NmUzNDdlN2VlYjcwMjM0NTgwZmI5NzRlYmExMWNlMjliODZkZWQxNWIzODVlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.EhMPs3lU_M97fTDhyDZaNHw5IEZbpQ0aUZnh9cArPiQ",
+    image: "https://img.notionusercontent.com/s3/prod-files-secure%2Ff4101201-cc9c-4227-a26b-1b4590380007%2F3a2584df-13a1-4f3b-814a-ea03252a13bd%2FImageGen_2025%E1%84%82%E1%85%A7%E1%86%AB_3%E1%84%8B%E1%85%AF%E1%86%AF_31%E1%84%8B%E1%85%B5%E1%86%AF_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_09_21_33.png/size/w=250?exp=1743521379&sig=E8eyCBA6hB7BhRlxRwAuBQzmH59mhpAMMogcMXr-q-8&id=1c7f3f86-53c7-8010-a06e-ccf19dcf132e&table=block",
     link: "https://ethereal-comb-6a0.notion.site/Doki-Bot-aka-1c7f3f8653c78010a06eccf19dcf132e?pvs=4",
   },
   {

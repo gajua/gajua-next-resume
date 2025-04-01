@@ -70,7 +70,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="max-w-2xl mx-auto text-lg text-muted-foreground mb-12"
             >
-              Creating elegant, intuitive, and high-performance web experiences with modern technologies.
+      
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -122,7 +122,7 @@ export default function Home() {
             <div className="text-center">
               <h2 className="text-3xl font-bold mb-4">About Me</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                I'm a passionate Fontend Engineer with 5+ years of experience building modern web applications.
+                유저의 반응에 희열을 느끼고, 문제 해결을 통해 성취감을 즐기는 프론트엔드 엔지니어입니다.
               </p>
             </div>
 
@@ -139,9 +139,9 @@ export default function Home() {
                       onMouseEnter={() => setActiveIntroItem(index)}
                       onClick={() => setActiveIntroItem(index)}
                       animate={{
-                        borderColor: activeIntroItem === index ? "hsl(var(--primary))" : "hsl(var(--border))",
+                        borderColor: activeIntroItem === index ? "hsl(var(--primary)/0.5)" : "hsl(var(--border))",
                         backgroundColor:
-                          activeIntroItem === index ? "hsl(var(--primary)/0.1)" : "hsl(var(--background)/0.5)",
+                          activeIntroItem === index ? "hsl(var(--primary)/0.05)" : "hsl(var(--background)/0.15)",
                       }}
                     >
                       <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
