@@ -3,6 +3,7 @@ import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import localFont from "next/font/local"
+import type { Metadata } from "next"
 
 const sfPro = localFont({
   src: [
@@ -30,18 +31,27 @@ const sfPro = localFont({
   variable: "--font-sf-pro",
 })
 
-export const metadata = {
-  title: "김세원 - Frontend Engineer",
-  description: "Frontend Engineer Portfolio"
+export const metadata: Metadata = {
+  title: "김세원 포트폴리오",
+  description: "프론트엔드 개발자 김세원의 포트폴리오입니다",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png" },
+    ],
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", sfPro.variable)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
@@ -50,7 +60,5 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
 import './globals.css'
