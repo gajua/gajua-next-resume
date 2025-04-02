@@ -19,21 +19,36 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
     mass: 1.2
   })
 
-  const baseRotateX = useTransform(smoothScroll, [0, 1], [0, 180])
-  const baseRotateY = useTransform(smoothScroll, [0, 1], [0, 360])
-  const baseRotateZ = useTransform(smoothScroll, [0, 1], [0, 270])
+  const baseRotateX = useTransform(smoothScroll, [0, 1], [0, 90])
+  const baseRotateY = useTransform(smoothScroll, [0, 1], [0, 180])
+  const baseRotateZ = useTransform(smoothScroll, [0, 1], [0, 135])
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+  const throttledMouseMove = (e: MouseEvent) => {
+    if (!window.requestAnimationFrame) {
       const { clientX, clientY } = e
       const x = (clientX / window.innerWidth) * 2 - 1
       const y = (clientY / window.innerHeight) * 2 - 1
       setMousePosition({ x, y })
+    } else {
+      window.requestAnimationFrame(() => {
+        const { clientX, clientY } = e
+        const x = (clientX / window.innerWidth) * 2 - 1
+        const y = (clientY / window.innerHeight) * 2 - 1
+        setMousePosition({ x, y })
+      })
     }
+  }
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+  useEffect(() => {
+    window.addEventListener("mousemove", throttledMouseMove)
+    return () => window.removeEventListener("mousemove", throttledMouseMove)
   }, [])
+
+  const commonTransition = {
+    duration: 30,
+    ease: "linear",
+    repeat: Number.POSITIVE_INFINITY,
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -41,32 +56,26 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
         <motion.div
           className="absolute top-1/4 right-[10%] w-[500px] h-[500px] rounded-full border border-primary/10 backdrop-blur-3xl"
           style={{
-            x: mousePosition.x * -20,
-            y: mousePosition.y * -20,
+            willChange: "transform",
+            transform: `translate3d(${mousePosition.x * -10}px, ${mousePosition.y * -10}px, 0)`,
             rotateX: baseRotateX,
             rotateY: baseRotateY,
             rotateZ: baseRotateZ,
           }}
           animate={{ rotate: 360 }}
-          transition={{
-            rotate: {
-              duration: 50,
-              ease: "linear",
-              repeat: Infinity,
-              repeatType: "loop",
-            },
-          }}
+          transition={commonTransition}
         />
 
         <motion.div
           className="absolute bottom-1/4 left-[15%] w-[300px] h-[300px] rounded-full border border-primary/10 backdrop-blur-3xl shadow-[0_0_30px_rgba(0,0,0,0.08)] dark:shadow-[0_0_30px_rgba(255,255,255,0.03)]"
           style={{
+            willChange: "transform",
             rotate: baseRotateY,
             x: mousePosition.x * 30,
             y: mousePosition.y * 30,
           }}
           animate={{ rotate: -360 }}
-          transition={{ duration: 90, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+          transition={commonTransition}
         />
 
         <motion.div
@@ -77,7 +86,7 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
             y: mousePosition.y * 15,
           }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 60, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+          transition={commonTransition}
         />
 
         <motion.div
@@ -88,7 +97,7 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
             y: mousePosition.y * -25,
           }}
           animate={{ rotate: -360 }}
-          transition={{ duration: 100, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+          transition={commonTransition}
         />
 
         <motion.div
@@ -99,7 +108,7 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
             y: mousePosition.y * 20,
           }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 110, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+          transition={commonTransition}
         />
 
         <motion.div
@@ -113,19 +122,6 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
             opacity: [0.5, 0.7, 0.5],
           }}
           transition={{ duration: 15, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
-        />
-
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]"
-          style={{
-            x: mousePosition.x * 30,
-            y: mousePosition.y * 30,
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{ duration: 20, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY, delay: 2 }}
         />
       </div>
 

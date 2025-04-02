@@ -20,7 +20,7 @@ export default function ProjectCard({ title, description, tags, image, index, li
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="group relative overflow-hidden rounded-3xl backdrop-blur-md bg-background/50 border border-border/50 p-1 max-w-96"
+      className="group relative overflow-hidden rounded-3xl backdrop-blur-md bg-background/50 border border-border/50 p-1 max-w-96 h-[500px] "
     >
       <div className="rounded-[22px] overflow-hidden">
         <div className="overflow-hidden">
