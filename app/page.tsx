@@ -47,6 +47,9 @@ export default function Home() {
       <main className="min-h-screen">
         {/* Hero Section */}
         <div ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+            <div
+              className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full  blur-[100px] bg-black/5"
+            />
           <motion.div style={{ opacity, scale, y }} className="text-center z-10 px-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -56,6 +59,7 @@ export default function Home() {
             >
               김세원
             </motion.h1>
+
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
