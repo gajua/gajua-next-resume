@@ -46,12 +46,17 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="text-2xl font-bold text-white">{project.name}</h3>
+          <h3 className="text-2xl font-bold">{project.name}</h3>
         </div>
       </div>
 
       <div className="p-6">
-        <p className="text-muted-foreground mb-6">{project.details || project.description}</p>
+        <p
+          className="text-muted-foreground mb-6"
+          dangerouslySetInnerHTML={{
+            __html: (project.details || project.description).replace(/\n/g, '<br />'),
+          }}
+        />
 
         {project.technologies && (
           <div className="mb-6">
