@@ -1,16 +1,18 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { GoogleLogin } from '@react-oauth/google'
+import emailjs from '@emailjs/browser'
+import { jwtDecode } from 'jwt-decode'
 
 export default function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null)
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -18,6 +20,24 @@ export default function ContactForm() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
+
+  useEffect(() => {
+    // @ts-ignore
+    window.google?.accounts.id.initialize({
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      callback: (response: any) => {
+        if (response.credential) {
+          const decoded: any = jwtDecode(response.credential);
+          setFormState(prev => ({
+            ...prev,
+            email: decoded.email
+          }));
+        }
+      },
+      auto_select: false
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({
@@ -26,13 +46,21 @@ export default function ContactForm() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      if (!formRef.current) return
+
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
+
       setIsSubmitted(true)
       setFormState({ name: "", email: "", message: "" })
 
@@ -40,7 +68,12 @@ export default function ContactForm() {
       setTimeout(() => {
         setIsSubmitted(false)
       }, 5000)
-    }, 1500)
+    } catch (err) {
+      console.error('이메일 전송 실패:', err)
+      setError("메시지 전송에 실패했습니다. 다시 시도해주세요.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -54,19 +87,24 @@ export default function ContactForm() {
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <Send className="h-8 w-8 text-primary" />
           </div>
-          <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
-          <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+          <h3 className="text-xl font-bold mb-2">메시지가 전송되었습니다!</h3>
+          <p className="text-muted-foreground">최대한 빠르게 답변 드리도록 하겠습니다.</p>
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="p-4 text-sm text-red-500 bg-red-50 rounded-lg">
+              {error}
+            </div>
+          )}
           <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">제목</Label>
             <Input
               id="name"
               name="name"
               value={formState.name}
               onChange={handleChange}
-              placeholder="Your name"
+              placeholder="제목을 입력해주세요"
               required
               className="backdrop-blur-md bg-background/30 border-border/50"
             />
@@ -96,31 +134,34 @@ export default function ContactForm() {
               className="min-h-[120px] backdrop-blur-md bg-background/30 border-border/50"
             />
           </div>
-          <Button type="submit" className="w-full rounded-full" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <span className="flex items-center">
-                <svg
-                  className="animate-spin -ml-1 mr-2 h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Sending...
-              </span>
-            ) : (
-              <span className="flex items-center">
-                Send Message
-                <Send className="ml-2 h-4 w-4" />
-              </span>
-            )}
-          </Button>
+          <div className="space-y-4">
+            <Button type="submit" className="w-full rounded-full" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="flex items-center">
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  전송 중...
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  메시지 보내기
+                  <Send className="ml-2 h-4 w-4" />
+                </span>
+              )}
+            </Button>
+
+          </div>
         </form>
       )}
     </motion.div>

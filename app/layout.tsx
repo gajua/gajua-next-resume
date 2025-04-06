@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import localFont from "next/font/local"
 import type { Metadata } from "next"
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const sfPro = localFont({
   src: [
@@ -50,12 +51,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // 클라이언트 ID가 없으면 에러를 방지하기 위해 조건부 렌더링
+  const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+
+  if (!googleClientId) {
+    console.error('NEXT_PUBLIC_GOOGLE_CLIENT_ID is not defined')
+    return (
+      <html lang="ko" suppressHydrationWarning>
+        <body className={cn("min-h-screen bg-background font-sans antialiased", sfPro.variable)}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    )
+  }
+
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", sfPro.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+        <GoogleOAuthProvider clientId={googleClientId}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   )

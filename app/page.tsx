@@ -238,9 +238,14 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="py-12 px-4 md:px-6 border-t">
+        <footer className="py-4 px-4 md:px-6 border-t">
           <div className="max-w-6xl mx-auto text-center">
             <p className="text-muted-foreground">© {new Date().getFullYear()} 김세원. All rights reserved.</p>
+            <p className="text-muted-foreground">
+              Email: <a href="mailto:sewon0325@gmail.com">sewon0325@gmail.com</a><br />
+              GitHub: <a href="https://github.com/gajua">@gajua</a><br />
+              Phone: 010-9889-8030
+            </p>
           </div>
         </footer>
       </main>
