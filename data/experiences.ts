@@ -40,7 +40,7 @@ export const experiences: YearGroup[] = [
             name: "노하우 서비스 최적화 및 글로벌 확장",
             image: "/images/knowhowIcon.png",
             description: "페이지 최적화 및 현지화로 UX 향상 및 매출 기반 마련.",
-            details:
+          details:
             "성능 개선 및 글로벌 확장을 통해 UX 향상.\n" +
             "Page Weight 50% 감소.\n" +
             "일본어 페이지 및 소셜 로그인(Line API) 개발을 통한 현지화 완료.\n" +
