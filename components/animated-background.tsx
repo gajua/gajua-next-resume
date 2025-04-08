@@ -46,7 +46,10 @@ export default function AnimatedBackground({ children }: AnimatedBackgroundProps
 
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div 
+      className="relative min-h-screen overflow-hidden"
+      aria-hidden="true"
+    >
       <div className="fixed inset-0 -z-10 overflow-hidden">
       {/* 우측 위 큰 원*/}
         <motion.div

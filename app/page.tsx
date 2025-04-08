@@ -94,9 +94,17 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.8 }}
             onClick={scrollToAbout}
+            role="button"
+            tabIndex={0}
+            aria-label="Scroll to about section"
+            onKeyDown={(e) => e.key === 'Enter' && scrollToAbout()}
           >
             <span className="text-sm font-medium mb-2">Scroll Down</span>
-            <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}>
+            <motion.div 
+              animate={{ y: [0, 10, 0] }} 
+              transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+              aria-hidden="true"
+            >
               <ChevronDown className="h-6 w-6" />
             </motion.div>
           </motion.div>
@@ -109,8 +117,11 @@ export default function Home() {
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="rounded-full backdrop-blur-md bg-background/50 border border-border/50"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            role="switch"
+            aria-checked={theme === 'dark'}
           >
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {theme === "dark" ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
           </Button>
         </div>
 

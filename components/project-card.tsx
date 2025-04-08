@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 interface ProjectCardProps {
   title: string
@@ -21,6 +22,8 @@ export default function ProjectCard({ title, description, tags, image, index, li
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
       className="group relative overflow-hidden rounded-3xl backdrop-blur-md bg-background/50 border border-border/50 p-1 max-w-96 h-[500px] "
+      role="article"
+      aria-labelledby={`project-title-${index}`}
     >
       <div className="rounded-[22px] overflow-hidden">
         <div className="overflow-hidden">
@@ -28,12 +31,12 @@ export default function ProjectCard({ title, description, tags, image, index, li
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.5 }}
             src={image}
-            alt={title}
+            alt={`Screenshot of ${title}`}
             className="w-full aspect-video object-cover"
           />
         </div>
         <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          <h3 id={`project-title-${index}`} className="text-xl font-bold mb-2">{title}</h3>
           <p className="text-muted-foreground mb-4">{description}</p>
           <div className="flex flex-wrap gap-2 mb-6">
             {tags.map((tag) => (

@@ -90,14 +90,24 @@ export default function ContactForm() {
           <p className="text-muted-foreground">최대한 빠르게 답변 드리도록 하겠습니다.</p>
         </motion.div>
       ) : (
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+        <form 
+          ref={formRef} 
+          onSubmit={handleSubmit} 
+          className="space-y-6"
+          aria-label="Contact form"
+        >
           {error && (
-            <div className="p-4 text-sm text-red-500 bg-red-50 rounded-lg">
+            <div 
+              className="p-4 text-sm text-red-500 bg-red-50 rounded-lg"
+              role="alert"
+              aria-live="assertive"
+            >
               {error}
             </div>
           )}
+          
           <div className="space-y-2">
-            <Label htmlFor="name">제목</Label>
+            <Label htmlFor="name" className="sr-only">제목</Label>
             <Input
               id="name"
               name="name"
@@ -106,35 +116,47 @@ export default function ContactForm() {
               placeholder="제목을 입력해주세요"
               required
               className="backdrop-blur-md bg-background/30 border-border/50"
+              aria-invalid={error ? "true" : "false"}
+              aria-describedby={error ? "error-message" : undefined}
             />
           </div>
+          
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="sr-only">Email</Label>
             <Input
               id="email"
               name="email"
               type="email"
               value={formState.email}
               onChange={handleChange}
-              placeholder="Your email address"
+              placeholder="이메일 주소를 입력해주세요"
               required
               className="backdrop-blur-md bg-background/30 border-border/50"
+              aria-invalid={error ? "true" : "false"}
             />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="message">Message</Label>
+            <Label htmlFor="message" className="sr-only">Message</Label>
             <Textarea
               id="message"
               name="message"
               value={formState.message}
               onChange={handleChange}
-              placeholder="Your message"
+              placeholder="메시지를 입력해주세요"
               required
               className="min-h-[120px] backdrop-blur-md bg-background/30 border-border/50"
+              aria-invalid={error ? "true" : "false"}
             />
           </div>
+
           <div className="space-y-4">
-            <Button type="submit" className="w-full rounded-full" disabled={isSubmitting}>
+            <Button 
+              type="submit" 
+              className="w-full rounded-full" 
+              disabled={isSubmitting}
+              aria-busy={isSubmitting}
+            >
               {isSubmitting ? (
                 <span className="flex items-center">
                   <svg
