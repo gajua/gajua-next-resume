@@ -36,11 +36,11 @@ export const metadata: Metadata = {
   description: "프론트엔드 개발자 김세원의 포트폴리오입니다",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "/images/icons/favicon.ico" },
+      { url: "/images/icons/icon.webp", type: "image/webp" },
     ],
     apple: [
-      { url: "/apple-icon.png" },
+      { url: "/images/icons/apple-icon.webp" },
     ],
   },
 }
