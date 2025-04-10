@@ -46,10 +46,10 @@ export default function Home() {
     <AnimatedBackground>
       <main className="min-h-screen">
         {/* Hero Section */}
-        <div ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-            <div
-              className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full  blur-[100px] bg-black/5"
-            />
+        <header className="relative h-screen flex items-center justify-center overflow-hidden">
+          <div
+            className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full  blur-[100px] bg-black/5"
+          />
           <motion.div style={{ opacity, scale, y }} className="text-center z-10 px-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ export default function Home() {
               <ChevronDown className="h-6 w-6" />
             </motion.div>
           </motion.div>
-        </div>
+        </header>
 
         {/* Theme Toggle */}
         <div className="fixed top-6 right-6 z-50">
@@ -126,7 +126,12 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-        <section ref={aboutRef} className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
+        <section 
+          ref={aboutRef} 
+          className="py-24 px-4 md:px-6 max-w-6xl mx-auto"
+          aria-labelledby="about-heading"
+        >
+          <h2 id="about-heading" className="text-3xl font-bold mb-4">About Me</h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +140,6 @@ export default function Home() {
             className="space-y-12"
           >
             <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">About Me</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 유저의 반응에 희열을 느끼고, 문제 해결을 통해 성취감을 즐기는 프론트엔드 엔지니어입니다.
               </p>
@@ -196,68 +200,61 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h2 className="text-3xl font-bold mb-12 text-center">Work Experience</h2>
-            <ExperienceTimeline />
-          </motion.div>
+        <section 
+          className="py-24 px-4 md:px-6 max-w-6xl mx-auto"
+          aria-labelledby="experience-heading"
+        >
+          <h2 id="experience-heading" className="text-3xl font-bold mb-12 text-center">Work Experience</h2>
+          <ExperienceTimeline />
         </section>
 
         {/* Projects Section */}
-        <section className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-            <div className="flex gap-8 items-center justify-center">
-              {projects.map((project, index) => (
-                <ProjectCard
-                  key={index}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.tags}
-                  image={project.image}
-                  index={index}
-                  link={project.link}
-                />
-              ))}
-            </div>
-          </motion.div>
+        <section 
+          className="py-24 px-4 md:px-6 max-w-6xl mx-auto"
+          aria-labelledby="projects-heading"
+        >
+          <h2 id="projects-heading" className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+          <div className="flex gap-8 items-center justify-center">
+            {projects.map((project, index) => (
+              <ProjectCard key={index} {...project} index={index} />
+            ))}
+          </div>
         </section>
 
         {/* Contact Section */}
-        <section className="py-24 px-4 md:px-6 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h2 className="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
-            <div className="max-w-xl mx-auto">
-              <ContactForm />
-            </div>
-          </motion.div>
+        <section 
+          className="py-24 px-4 md:px-6 max-w-6xl mx-auto"
+          aria-labelledby="contact-heading"
+        >
+          <h2 id="contact-heading" className="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+          <div className="max-w-xl mx-auto">
+            <ContactForm />
+          </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-4 px-4 md:px-6 border-t">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-muted-foreground">© {new Date().getFullYear()} 김세원. All rights reserved.</p>
-            <p className="text-muted-foreground">
-              Email: <a href="mailto:sewon0325@gmail.com">sewon0325@gmail.com</a><br />
-              GitHub: <a href="https://github.com/gajua">@gajua</a><br />
-              Phone: 010-9889-8030
+        <footer className="py-8 px-4 md:px-6 border-t">
+          <nav className="max-w-6xl mx-auto text-center">
+            <h2 className="sr-only">Footer Navigation</h2>
+            <ul className="space-y-2">
+              <li>
+                <address className="not-italic">
+                  Email: <a href="mailto:sewon0325@gmail.com">sewon0325@gmail.com</a>
+                </address>
+              </li>
+              <li>
+                GitHub: <a href="https://github.com/gajua">@gajua</a>
+              </li>
+              <li>
+                <address className="not-italic">
+                  Phone: <a href="tel:010-9889-8030">010-9889-8030</a>
+                </address>
+              </li>
+            </ul>
+            <p className="mt-4 text-muted-foreground">
+              © {new Date().getFullYear()} 김세원. All rights reserved.
             </p>
-          </div>
+          </nav>
         </footer>
       </main>
     </AnimatedBackground>
