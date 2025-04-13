@@ -155,6 +155,8 @@ export default function Home() {
                       key={index}
                       className="backdrop-blur-md bg-background/50 border border-border/50 rounded-2xl p-6 cursor-pointer"
                       whileHover={{ scale: 1.02 }}
+                      tabIndex={0}
+                      onFocus={() => setActiveIntroItem(index)}
                       onMouseEnter={() => setActiveIntroItem(index)}
                       onClick={() => setActiveIntroItem(index)}
                       animate={{
