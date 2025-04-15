@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import localFont from "next/font/local"
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/react"
 
 const sfPro = localFont({
   src: [
@@ -55,6 +56,7 @@ export default function RootLayout({
       <body className={cn("min-h-screen bg-background font-sans antialiased", sfPro.variable)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
