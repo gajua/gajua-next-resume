@@ -14,6 +14,7 @@ export default function ExperienceTimeline() {
   const [visibleYears, setVisibleYears] = useState<string[]>(["2025 - Present"])
 
   const toggleExperience = (period: string) => {
+    console.log("period", period)
     if (expandedExperiencePeriod === period) {
       setExpandedExperiencePeriod(null)
       setSelectedProject(null)

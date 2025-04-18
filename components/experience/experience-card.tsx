@@ -24,7 +24,11 @@ export function ExperienceCard({ experience, isExpanded, onToggle, onProjectClic
       }}
     >
       {/* Company Header */}
-      <div className="p-6 cursor-pointer" onClick={onToggle} tabIndex={0} onFocus={() => onToggle()} >
+      <div className="p-6 cursor-pointer" onClick={onToggle} tabIndex={0} onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onToggle()
+        }
+      }} >
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full overflow-hidden backdrop-blur-md bg-background/30 border border-border/50 flex items-center justify-center flex-shrink-0">
             <Image

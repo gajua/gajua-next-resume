@@ -10,7 +10,6 @@ interface YearNavigationProps {
 }
 
 export function YearNavigation({ experiences, visibleYears, onToggleYear }: YearNavigationProps) {
-  const [lastInteractionType, setLastInteractionType] = useState<'mouse' | 'keyboard'>('mouse')
 
   return (
     <nav aria-label="연도별 경험 필터" className="flex flex-wrap gap-2 justify-center mb-8">
@@ -20,17 +19,17 @@ export function YearNavigation({ experiences, visibleYears, onToggleYear }: Year
           variant={visibleYears.includes(exp.year) ? "default" : "outline"}
           size="sm"
           className="rounded-full"
-          onClick={() => {
-            setLastInteractionType('mouse')
-            onToggleYear(exp.year)
-          }}
-          onFocus={(e) => {
-            // Tab 키로 인한 포커스인 경우에만 실행
-            if (lastInteractionType !== 'mouse' && index !== 0) {
+          onClick={(e) => { 
+            if (!e.detail) {
               onToggleYear(exp.year)
             }
           }}
-          onKeyDown={() => setLastInteractionType('keyboard')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onToggleYear(exp.year)
+            }
+          }}
         >
           <Calendar className="w-4 h-4 mr-2" />
           {exp.year}

@@ -15,6 +15,12 @@ export function ProjectCard({ project, onClick, isActive }: ProjectCardProps) {
       className={`group relative rounded-xl overflow-hidden cursor-pointer border-2 ${isActive ? "border-primary" : "border-transparent"} hover:border-primary`}
       onClick={onClick} 
       whileHover={{ scale: 1.02 }}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick()
+        }
+      }}
     >
       <div className="flex items-center gap-4 p-4">
         <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
