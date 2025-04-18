@@ -37,4 +37,4 @@ export function YearNavigation({ experiences, visibleYears, onToggleYear }: Year
       ))}
     </nav>
   )
-} 
+} 4

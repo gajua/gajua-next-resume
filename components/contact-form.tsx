@@ -68,7 +68,6 @@ export default function ContactForm() {
         setIsSubmitted(false)
       }, 5000)
     } catch (err) {
-      console.error('이메일 전송 실패:', err)
       setError("메시지 전송에 실패했습니다. 다시 시도해주세요.")
     } finally {
       setIsSubmitting(false)
