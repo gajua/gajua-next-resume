@@ -19,11 +19,7 @@ export function YearNavigation({ experiences, visibleYears, onToggleYear }: Year
           variant={visibleYears.includes(exp.year) ? "default" : "outline"}
           size="sm"
           className="rounded-full"
-          onClick={(e) => { 
-            if (!e.detail) {
-              onToggleYear(exp.year)
-            }
-          }}
+          onClick={() => onToggleYear(exp.year)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
